@@ -35,7 +35,7 @@ jobs:
             echo "Processing $file"
             md-to-pdf "$file" \
               --basedir "$(pwd)" \
-              --stylesheet pdf-style.css \
+              --stylesheet "$(pwd)/.github/workflows/pdf-style.css" \
               --launch-options '{"args":["--no-sandbox","--disable-setuid-sandbox"]}'
             mv "${file%.*}.pdf" pdf/
           done
