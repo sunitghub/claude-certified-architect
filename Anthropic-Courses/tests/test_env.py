@@ -1,4 +1,5 @@
 import os
+import subprocess
 import tempfile
 from pathlib import Path
 from unittest.mock import patch, MagicMock
@@ -7,9 +8,13 @@ import pytest
 
 from common.env import load_environment_variables
 
+subprocess.run("clear", shell=True)  # Clear the terminal for better readability of test output
+
 def test_read_prod_githubname():
     load_environment_variables()
     assert os.getenv("GITHUB_NAME") == "sunitghub"
+    print(f"\nGITHUB_NAME is {os.getenv('GITHUB_NAME')}.")
+
 
 def test_load_environment_variables_success():
     """Test that load_environment_variables finds and loads .env"""
