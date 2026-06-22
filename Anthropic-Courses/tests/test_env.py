@@ -29,7 +29,9 @@ def test_load_environment_variables_success():
 
 def test_load_environment_variables_not_found(capsys):
     """Test that graceful error when .env not found"""
-    with patch('common.env.find_dotenv', return_value=None):
+    with patch('common.env.find_dotenv', return_value=None), patch(
+        'common.env._candidate_dotenv_paths', return_value=iter(())
+    ):
         result = load_environment_variables()
         assert result is None
         captured = capsys.readouterr()
